@@ -4,9 +4,7 @@ export default {
   name: "message-bus",
 
   initialize() {
-console.log('message-bus init');
     MessageBus.baseUrl = Discourse.longPollingBaseUrl;
-console.log(MessageBus.baseUrl);
 
     if (MessageBus.baseUrl !== '/') {
       MessageBus.ajax = function(opts) {
@@ -16,7 +14,6 @@ console.log(MessageBus.baseUrl);
       };
     } else {
       MessageBus.baseUrl = Discourse.getURL('/');
-console.log(MessageBus.baseUrl);
     }
   }
 };
