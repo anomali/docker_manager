@@ -1,4 +1,4 @@
-/* global $:true, Discourse */
+/* global $:true */
 import request from 'ember-ajax/request';
 
 export default {
@@ -15,4 +15,3 @@ export default {
     });
   }
 };
-
