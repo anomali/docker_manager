@@ -1,5 +1,12 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
 zh_CN:
   js:
     docker:
-      upgrade: "Docker 负责升级。"
-      perform_upgrade: "点击这儿升级。"
+      upgrade: "当前使用 Discourse 的旧版本。"
+      perform_upgrade: "点击这里升级。"

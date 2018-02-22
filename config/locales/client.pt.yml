@@ -5,8 +5,8 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-de:
+pt:
   js:
     docker:
-      upgrade: "Deine Installation von Discourse ist veraltet."
-      perform_upgrade: "Klicke hier, um zu aktualisieren."
+      upgrade: "A sua instalação do Discourse está desatualizada."
+      perform_upgrade: "Clique aqui para atualizar."

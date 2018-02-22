@@ -1,5 +1,12 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
 pl_PL:
   js:
     docker:
-      upgrade: "Aktualizacje wykonuje Docker."
-      perform_upgrade: "Kliknij, aby zaktualizować."
+      upgrade: "Twoja instancja Discourse wymaga aktualizacji. "
+      perform_upgrade: "Kliknij tu, aby zaktualizować."

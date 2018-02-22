@@ -9,38 +9,37 @@ module DockerManager
       return if Rails.env.development?
 
       version = File.read('/VERSION') rescue '1.0.0'
-      if version == '1.0.0'
-        version = '1.0.13' if File.exist?('/usr/local/lib/libpng16.so.16.19.0')
-      end
 
       version = Gem::Version.new(version)
-      expected_version = Gem::Version.new('1.3.5')
+      expected_version = Gem::Version.new('2.0.20171204')
       ruby_version = Gem::Version.new(RUBY_VERSION)
-      expected_ruby_version = Gem::Version.new('2.3')
+      expected_ruby_version = Gem::Version.new('2.4')
 
       if (version < expected_version) || (ruby_version < expected_ruby_version)
 
-        render text: <<HTML
-<html><head></head><body>
-<h2>You are running an old version of the Discourse image.</h2>
-<p>
-Upgrades via the web UI are disabled until you run the latest image.
-</p>
-<p>
-To do so log in to your server using SSH and run:
-</p>
+        message = <<~HTML
+        <html><head></head><body>
+        <h2>You are running an old version of the Discourse image.</h2>
+        <p>
+        Upgrades via the web UI are disabled until you run the latest image.
+        </p>
+        <p>
+        To do so log in to your server using SSH and run:
+        </p>
 
-<pre>
-cd /var/discourse
-git pull
-./launcher rebuild app
-</pre>
-<p>
-<a href='https://meta.discourse.org/t/how-do-i-update-my-docker-image-to-latest/23325'>More info on our support site</a>
-</p>
-</body>
-</html>
-HTML
+        <pre>
+        cd /var/discourse
+        git pull
+        ./launcher rebuild app
+        </pre>
+        <p>
+        <a href='https://meta.discourse.org/t/how-do-i-update-my-docker-image-to-latest/23325'>More info on our support site</a>
+        </p>
+        </body>
+        </html>
+        HTML
+
+        render html: message.html_safe
       else
         render
       end
@@ -89,14 +88,14 @@ HTML
         upgrader = Upgrader.new(current_user.id, repo, params[:version])
         upgrader.upgrade
       end
-      render text: "OK"
+      render plain: "OK"
     end
 
     def reset_upgrade
       repo = DockerManager::GitRepo.new(params[:path])
       upgrader = Upgrader.new(current_user.id, repo, params[:version])
       upgrader.reset!
-      render text: "OK"
+      render plain: "OK"
     end
 
     def ps
@@ -106,7 +105,7 @@ HTML
       else
         ps_output = `ps aux --sort -rss`
       end
-      render text: ps_output
+      render plain: ps_output
     end
 
     def runaway_cpu
@@ -116,7 +115,7 @@ HTML
          a += 1
         end
       end
-      render text: "Killing CPU on #{Process.pid}"
+      render plain: "Killing CPU on #{Process.pid}"
     end
 
     def runaway_mem
@@ -127,7 +126,7 @@ HTML
           sleep 30
         end
       end
-      render text: "Leaking memory on #{Process.pid}"
+      render plain: "Leaking memory on #{Process.pid}"
     end
 
   end
